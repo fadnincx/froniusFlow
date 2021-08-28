@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  fronius_flow:
+    image: nginx:alpine
+    container_name: fronius_data_flow
+    restart: unless-stopped
+    ports:
+      - 8125:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./web:/usr/share/nginx/html
