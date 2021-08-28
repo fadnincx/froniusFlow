@@ -1,10 +1,15 @@
 /**
  * PV System Current Flow
- * by Marcel WÃ¼rsten (inspiration Fronius Solarweb), 18.8.2021
+ *
+ * https://github.com/fadnincx/froniusFlow
+ * Initial creation: 18.8.2021, last update: 28.8.2021
+ *
+ * Inspiration from Fronius Solarweb
+ *
  */
 
 // Strings
-lang = {
+const lang = {
  battery_charge_w: 'Akku wird mit {0} W geladen!',
  battery_charge_kw: 'Akku wird mit {0} kW geladen!',
  battery_discharge_w: 'Akku wird mit {0} W entladen!',
@@ -12,9 +17,12 @@ lang = {
 };
 
 // define local constants
-pv_kwp = 9.99         // Insert your local PV kWp to adjust the pv production bar
+const pv_kwp = 9.99         // Insert your local PV kWp to adjust the pv production bar
 
 
+/***************************************/
+/** NOTHING NEEDS TO BE TOUCHED BELOW **/
+/***************************************/
 
 
 // define variabls that needed to be updated
@@ -49,7 +57,7 @@ function updateData(){
   battery_txt.text(parseFloat(soc.toFixed(0)).toLocaleString()+"%")
 
   // Set the new bars
-  pv_bar.attr({d:getCircleSegmentPath(75, 75, 0, Math.max(Math.min(Math.sqrt(Math.abs(p_pv))*(270*Math.sqrt(pv_kwp)),270),0))})
+  pv_bar.attr({d:getCircleSegmentPath(75, 75, 0, Math.max(Math.min(Math.sqrt(Math.abs(p_pv))*(270*Math.sqrt(pv_kwp*1000)/(pv_kwp*1000)),270),0))})
   consumation_bar.attr({d:getCircleSegmentPath(325, 75, 0, Math.max(Math.min(Math.sqrt(Math.abs(p_load))*1.9,270),0))})
   battery_bar.attr({d:getCircleSegmentPath(325, 325, 0, Math.max(Math.min(soc*2.7),0))})
 
