@@ -51,10 +51,10 @@ function updateData(){
   p_pv = data['Body']['Data']['Site']['P_PV']
 
   // Set the new text values in the circles
-  pv_txt.text(p_pv>=1000?(parseFloat((p_pv/1000).toFixed(2)).toLocaleString()+"kW"):(parseFloat(p_pv.toFixed(0)).toLocaleString()+"W"))
-  grid_txt.text(Math.abs(p_grid)>=1000?(parseFloat((Math.abs(p_grid)/1000).toFixed(2)).toLocaleString()+"kW"):(parseFloat(Math.abs(p_grid).toFixed(0)).toLocaleString()+"W"))
-  consumption_txt.text(Math.abs(p_load)>=1000?(parseFloat((Math.abs(p_load)/1000).toFixed(2)).toLocaleString()+"kW"):(parseFloat(Math.abs(p_load).toFixed(0)).toLocaleString()+"W"))
-  battery_txt.text(parseFloat(soc.toFixed(0)).toLocaleString()+"%")
+  pv_txt.text(p_pv>=1000?(parseFloat((p_pv/1000)).toFixed(2).toLocaleString()+"kW"):(parseFloat(p_pv).toFixed(0).toLocaleString()+"W"))
+  grid_txt.text(Math.abs(p_grid)>=1000?(parseFloat((Math.abs(p_grid)/1000)).toFixed(2).toLocaleString()+"kW"):(parseFloat(Math.abs(p_grid)).toFixed(0).toLocaleString()+"W"))
+  consumption_txt.text(Math.abs(p_load)>=1000?(parseFloat((Math.abs(p_load)/1000)).toFixed(2).toLocaleString()+"kW"):(parseFloat(Math.abs(p_load)).toFixed(0).toLocaleString()+"W"))
+  battery_txt.text(parseFloat(soc).toFixed(0).toLocaleString()+"%")
 
   // Set the new bars
   pv_bar.attr({d:getCircleSegmentPath(75, 75, 0, Math.max(Math.min(Math.sqrt(Math.abs(p_pv))*(270*Math.sqrt(pv_kwp*1000)/(pv_kwp*1000)),270),0))})
